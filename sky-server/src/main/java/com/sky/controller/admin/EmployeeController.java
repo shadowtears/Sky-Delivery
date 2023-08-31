@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,5 +103,20 @@ public class EmployeeController {
         log.info("员工分页查询,参数为{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 员工账号禁用或启用
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "员工账号禁用或启用")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        log.info("员工账号禁用或启用 {},{}", status, id);
+        employeeService.startOrStop(status, id);
+        return Result.success();
     }
 }

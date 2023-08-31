@@ -29,4 +29,6 @@ public interface EmployeeMapper {
     void insert(Employee employee);
 
     Page<Employee> pageQuery(String name);
+
+    void startOrStop(Employee employee);
 }
