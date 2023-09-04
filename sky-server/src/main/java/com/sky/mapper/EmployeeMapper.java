@@ -28,7 +28,30 @@ public interface EmployeeMapper {
             "(#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})")
     void insert(Employee employee);
 
+
+    /**
+     * 通过名字分页查询用户
+     *
+     * @param name
+     * @return
+     */
     Page<Employee> pageQuery(String name);
 
-    void startOrStop(Employee employee);
+
+    /**
+     * 根据用户查询是否禁言
+     *
+     * @param employee
+     * @return
+     */
+    void update(Employee employee);
+
+    /**
+     * 根据用户id查询员工
+     *
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM employee where id = #{id}")
+    Employee getById(Long id);
 }
